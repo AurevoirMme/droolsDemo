@@ -1,0 +1,19 @@
+/*
+package rules;
+import java.math.*
+import edu.hubu.entity.*
+import edu.hubu.dto.*
+import edu.hubu.enums.*
+
+
+rule  "武商量贩-消费-{ER_EXP_FEE}>500"
+
+when
+  $invoice : MatchInvoiceExpenselRuleRequestDto(
+  BigDecimal.valueOf(Double.valueOf(data["AMOUNT"]))>500
+ )
+then
+  $invoice.setResult(RuleResult.CALCULATE);
+//  $invoice.getData().put("SCORE",String.valueOf(Double.valueOf(getData().get("SCORE"))+Double.valueOf(getData().get("AMOUNT"))*1.1));
+  $invoice.setRemarkMessage("{ER_SCORE}={ER_SCORE}+{ER_EXP_FEE}*1.1\n");
+end*/

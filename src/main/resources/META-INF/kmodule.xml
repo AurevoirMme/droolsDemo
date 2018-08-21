@@ -1,0 +1,13 @@
+<kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
+    <kbase name="HelloWorldKB" packages="rules">
+        <ksession name="HelloWorldKS"/>
+    </kbase>
+
+    <kbase name="point-rulesKB" packages="rules">
+        <ksession name="point-rulesKS"/>
+    </kbase>
+
+    <kbase name="testKB" packages="rules">
+        <ksession name="testKS"/>
+    </kbase>
+</kmodule>

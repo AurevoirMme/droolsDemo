@@ -1,0 +1,5 @@
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+
