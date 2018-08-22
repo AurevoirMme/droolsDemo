@@ -3,7 +3,7 @@ package edu.hubu.enums;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public enum RuleResult {
+public enum RuleResult implements CodeEnum {
 
     REJECT(1, "拒绝"),
 
@@ -13,10 +13,10 @@ public enum RuleResult {
 
     OK(4, "OK");
 
-    private int code;
+    private Integer code;
     private String description;
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 

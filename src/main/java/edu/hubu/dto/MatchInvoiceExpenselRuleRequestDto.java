@@ -3,8 +3,9 @@ package edu.hubu.dto;
 import edu.hubu.enums.RuleResult;
 import lombok.Data;
 
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @BelongsProject: demodrool
@@ -22,7 +23,7 @@ public class MatchInvoiceExpenselRuleRequestDto {
     private String invoiceOID;
     
     //消费信息-会员级别、地点、费用等等
-    private Map<String, String> data = new HashMap<>();
+    private Map<String, String> data = new ConcurrentHashMap<>();
     
     //规则执行结果
     private RuleResult result = RuleResult.OK;

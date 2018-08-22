@@ -1,12 +1,24 @@
 package edu.hubu.rule;
 
 
+import com.codoid.products.exception.FilloException;
+import com.codoid.products.fillo.Connection;
+import com.codoid.products.fillo.Field;
+import com.codoid.products.fillo.Fillo;
+import com.codoid.products.fillo.Recordset;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.hubu.utils.RuleGenerate;
 import edu.hubu.utils.SingletonListRules;
 import edu.hubu.vo.ExpenseRule;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.javafunk.excelparser.SheetParser;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -19,9 +31,8 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 public class FilloExcel {
-/*
-    static String fileName = "RuleInformation.xlsx";
-    static String sheetName = "Sheet1";*//*
+    /*static String fileName = "RuleInformation.xlsx";
+    static String sheetName = "Sheet1";
 
 
     static String packageName = "rules";
@@ -54,8 +65,6 @@ public class FilloExcel {
     }
 
     public static void main(String[] args) {
-*/
-/*
 
         try {
 
@@ -114,7 +123,7 @@ public class FilloExcel {
         } catch (Exception e) {
             log.error("FilloExcel findSheet test err:{}]", e.getMessage());
         }
-*//*
+
 
 
 
@@ -173,8 +182,7 @@ public class FilloExcel {
         expenseRule.setDroolsRule(generate);
         return expenseRule;
 
-    }
+    }*/
 
-*/
 
 }

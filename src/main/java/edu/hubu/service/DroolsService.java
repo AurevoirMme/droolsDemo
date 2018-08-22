@@ -2,9 +2,11 @@ package edu.hubu.service;
 
 public interface DroolsService {
 
-    public String fireRule();
+    String fireRule();
 
-    public String countScore();
+    String countScore();
 
-    public String testAddScore();
+    String testAddScore();
+
+    String AddScore();
 }

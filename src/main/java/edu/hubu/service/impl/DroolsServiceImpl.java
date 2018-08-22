@@ -99,10 +99,6 @@ public class DroolsServiceImpl implements DroolsService {
         try {
             KieSessionUtil kieSessionUtil = SingletonKieSession.getInstance();
 
-            List<ExpenseRule> entityList = SingletonListRules.getInstance();
-
-//            entityList.forEach(t -> kieSessionUtil.addContent(t.getDroolsRule(), ResourceType.DRL));
-
             KieSession ksession = kieSessionUtil.build().newKieSession();
 
             StringBuilder stringBuilder = new StringBuilder();
@@ -139,7 +135,10 @@ public class DroolsServiceImpl implements DroolsService {
         }
     }
 
-
+    @Override
+    public String AddScore() {
+        return null;
+    }
 
     private static List<MatchInvoiceExpenselRuleRequestDto> getTestData() {
         try {

@@ -10,8 +10,9 @@ import lombok.Getter;
  * @Description: 异常原因
  */
 @Getter
-public enum ResultEnum {
-    SUCCESS(0, "成功"),;
+public enum ResultEnum implements CodeEnum{
+    SUCCESS(0, "成功"),
+    PARAM_ERROR(1, "参数不正确"),;
 
     private Integer code;
 
