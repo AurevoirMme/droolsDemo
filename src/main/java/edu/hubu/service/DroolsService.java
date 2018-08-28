@@ -1,5 +1,7 @@
 package edu.hubu.service;
 
+import edu.hubu.dto.MatchInvoiceExpenselRuleRequestDto;
+
 public interface DroolsService {
 
     String fireRule();
@@ -8,5 +10,5 @@ public interface DroolsService {
 
     String testAddScore();
 
-    String AddScore();
+    MatchInvoiceExpenselRuleRequestDto AddScore(MatchInvoiceExpenselRuleRequestDto o);
 }
