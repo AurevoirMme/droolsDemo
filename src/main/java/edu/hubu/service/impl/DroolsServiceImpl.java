@@ -136,8 +136,34 @@ public class DroolsServiceImpl implements DroolsService {
     }
 
     @Override
-    public String AddScore() {
-        return null;
+    public MatchInvoiceExpenselRuleRequestDto AddScore(MatchInvoiceExpenselRuleRequestDto o) {
+        KieSessionUtil kieSessionUtil = SingletonKieSession.getInstance();
+
+        KieSession ksession = kieSessionUtil.build().newKieSession();
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        RuleGenerate generate = new RuleGenerate();
+        generate.setRulePropertyNameAlias(SingletonListRules.getRulePropertyNameAlias());
+
+        ksession.insert(o);
+        ksession.fireAllRules();
+        stringBuilder.append(o.getRemarkMessage() + "|" + o.getData().get("score") + "|" + o.getData().get("fee") + "\n");
+
+        // 处理计算后的值
+        //{ER_SCORE}={ER_SCORE}+{ER_EXP_FEE}*1.1
+        // if (!StringUtils.isEmpty(o.getRemarkMessage()))
+        if (o.getResult().getCode() == RuleResult.CALCULATE.getCode()) {
+            generate.dealCaculate(o.getRemarkMessage(), o.getData());
+        }
+
+        System.out.println(stringBuilder);
+        System.out.println("\n【after】\n");
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(o.getRemarkMessage() + "|" + o.getData().get("score") + "|" + o.getData().get("fee") + "\n");
+        System.out.println(sb);
+        return o;
     }
 
     private static List<MatchInvoiceExpenselRuleRequestDto> getTestData() {
