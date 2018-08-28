@@ -1,15 +1,19 @@
 package edu.hubu.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import edu.hubu.converter.OrderForm2MierrDTO;
 import edu.hubu.dto.MatchInvoiceExpenselRuleRequestDto;
 import edu.hubu.enums.ResultEnum;
 import edu.hubu.exception.DroolsDemoException;
 import edu.hubu.form.OrderForm;
+import edu.hubu.service.DroolsService;
 import edu.hubu.utils.ResultVOUtil;
 import edu.hubu.vo.ResultVO;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +33,9 @@ import java.util.Map;
 @Slf4j
 @RestController
 public class OrderInputController {
+    @Autowired
+    DroolsService droolsService;
+
     @ApiOperation(value="输入流水规则引擎过滤", notes="根据流水form",httpMethod = "Post")
     @ApiImplicitParam(name = "orderForm", value = "订单流水form", required = true, dataType = "OrderForm", paramType = "path")
     @PostMapping("/input")
@@ -41,8 +48,15 @@ public class OrderInputController {
                     bindingResult.getFieldError().getDefaultMessage());
         }
         MatchInvoiceExpenselRuleRequestDto dto = OrderForm2MierrDTO.convert(orderForm);
+        Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+        String before = gson.toJson(dto);
 
+        log.info("before:{}",before);
 
+        droolsService.AddScore(dto);
+
+        String after = gson.toJson(dto);
+        log.info("after:{}",after);
 
         return ResultVOUtil.success();
     }
