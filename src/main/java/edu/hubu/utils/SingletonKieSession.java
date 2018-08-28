@@ -2,9 +2,7 @@ package edu.hubu.utils;
 
 import edu.hubu.vo.ExpenseRule;
 import org.kie.api.io.ResourceType;
-
 import java.util.List;
-
 /**
  * @BelongsProject: demoDrools
  * @BelongsPackage: edu.hubu.utils

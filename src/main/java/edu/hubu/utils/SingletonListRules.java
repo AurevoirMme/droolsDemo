@@ -54,12 +54,20 @@ public class SingletonListRules {
     private static Map<String, String> rulePropertyNameAlias = new HashMap<>();
 
     static {
-        rulePropertyNameAlias.put("\\{.*LEVEL.*\\}", "EXPENSE_LEVEL");
+      /*  rulePropertyNameAlias.put("\\{.*LEVEL.*\\}", "EXPENSE_LEVEL");
         rulePropertyNameAlias.put("\\{.*LOCATION.*\\}", "city");
         rulePropertyNameAlias.put("\\{.*FEE.*\\}", "AMOUNT");
         rulePropertyNameAlias.put("\\{.*DAY.*\\}", "DAY");
         rulePropertyNameAlias.put("\\{.*SCORE.*\\}", "SCORE");
         rulePropertyNameAlias.put("\\{.*PARAM.*\\}", "PARAM");
+        rulePropertyNameAlias.put("\\{.*PARAM.*\\}", "PARAM");*/
+        rulePropertyNameAlias.put("\\{.*LEVEL.*\\}", "level");
+        rulePropertyNameAlias.put("\\{.*LOCATION.*\\}", "location");
+        rulePropertyNameAlias.put("\\{.*FEE.*\\}", "fee");
+        rulePropertyNameAlias.put("\\{.*DAY.*\\}", "day");
+        rulePropertyNameAlias.put("\\{.*SCORE.*\\}", "score");
+        rulePropertyNameAlias.put("\\{.*PARAM.*\\}", "PARAM");
+        rulePropertyNameAlias.put("\\{.*COUNT.*\\}", "count");
 
     }
 
