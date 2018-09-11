@@ -1,6 +1,7 @@
 package edu.hubu.utils;
 
 import edu.hubu.vo.ExpenseRule;
+import lombok.extern.slf4j.Slf4j;
 import org.kie.api.io.ResourceType;
 import java.util.List;
 /**
@@ -10,6 +11,7 @@ import java.util.List;
  * @CreateTime: 2018-08-21 10:32
  * @Description: 规则KieSessionUtil单例
  */
+@Slf4j
 public class SingletonKieSession {
 
     private SingletonKieSession() {}
@@ -27,7 +29,12 @@ public class SingletonKieSession {
         Singleton(){
             singleton = new KieSessionUtil();
             List<ExpenseRule> entityList = SingletonListRules.getInstance();
-            entityList.forEach(t -> singleton.addContent(t.getDroolsRule(), ResourceType.DRL));
+//            entityList.forEach(t -> singleton.addContent(t.getDroolsRule(), ResourceType.DRL));
+            entityList.forEach(t -> {
+                log.info("rule:{}",t.getDroolsRule());
+                singleton.addContent(t.getDroolsRule(), ResourceType.DRL);
+            });
+
         }
         public KieSessionUtil getInstance(){
             return singleton;

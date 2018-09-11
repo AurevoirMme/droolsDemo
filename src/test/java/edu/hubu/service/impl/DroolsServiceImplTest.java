@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -52,17 +51,18 @@ public class DroolsServiceImplTest {
     @Test
     public void AddScore() {
         Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+
         List<MatchInvoiceExpenselRuleRequestDto> dtoList = getObject();
         dtoList.forEach(o ->
         {
             int flag = Integer.valueOf(o.getData().get("count"));
-            System.out.println(gson.toJson(o));
+//            System.out.println(gson.toJson(o));
             droolsService.AddScore(o);
 
             if (flag == Integer.valueOf(o.getData().get("count"))) {
                 o.getData().put("count", String.valueOf(flag + 1));
             }
-            System.out.println(gson.toJson(o));
+//            System.out.println(gson.toJson(o));
         });
 
     }
@@ -73,7 +73,7 @@ public class DroolsServiceImplTest {
         {
             OrderForm o = new OrderForm();
             o.setScore("100");
-            o.setLocation("湖北");
+            o.setLocation("湖北省");
             o.setLevel("3");
             o.setFee("100");
             o.setCompany("hubu");
@@ -84,7 +84,7 @@ public class DroolsServiceImplTest {
         {
             OrderForm o = new OrderForm();
             o.setScore("120");
-            o.setLocation("湖北");
+            o.setLocation("广东省");
             o.setLevel("4");
             o.setFee("200");
             o.setCompany("hubu1");
@@ -95,7 +95,7 @@ public class DroolsServiceImplTest {
         {
             OrderForm o = new OrderForm();
             o.setScore("130");
-            o.setLocation("湖北");
+            o.setLocation("北京市");
             o.setLevel("3");
             o.setFee("672");
             o.setCompany("hubu2");
@@ -106,7 +106,7 @@ public class DroolsServiceImplTest {
         {
             OrderForm o = new OrderForm();
             o.setScore("232");
-            o.setLocation("湖北");
+            o.setLocation("深圳市");
             o.setLevel("3");
             o.setFee("500");
             o.setCompany("hubu3");
@@ -117,7 +117,7 @@ public class DroolsServiceImplTest {
         {
             OrderForm o = new OrderForm();
             o.setScore("546");
-            o.setLocation("湖北");
+            o.setLocation("贵州省");
             o.setLevel("2");
             o.setFee("342");
             o.setCompany("hubu4");
@@ -128,7 +128,7 @@ public class DroolsServiceImplTest {
         {
             OrderForm o = new OrderForm();
             o.setScore("332");
-            o.setLocation("湖北");
+            o.setLocation("河南省");
             o.setLevel("2");
             o.setFee("32");
             o.setCompany("hubu5");
@@ -140,9 +140,6 @@ public class DroolsServiceImplTest {
         List<MatchInvoiceExpenselRuleRequestDto> dtoList = orderForms.stream().map(OrderForm2MierrDTO::convert).collect(Collectors.toList());
 
         return dtoList;
-
-
     }
-
 
 }

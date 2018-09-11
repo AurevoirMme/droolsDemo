@@ -38,17 +38,23 @@ public class OrderFormUtil {
 
         List<OrderForm> orderForms = new ArrayList<>(count);
 
+        Random r = new Random();
         for (int j = 0; j < count; j++) {
             OrderForm o = new OrderForm();
             o.setScore(randomStr(0, 100 * 10000));
             int i = Integer.valueOf(o.getScore());
             int level = i / 10000;
             o.setLevel(String.valueOf(level));
-            o.setFee(randomStr(1, i/100));
+            if (i>100)
+                o.setFee(randomStr(1, i / 100));
+            else
+                o.setFee(String.valueOf(r.nextInt(1)));
             if (i == 0) {
                 o.setCount("0");
+            } else if (i < 1000) {
+                o.setCount(randomStr(1, 500));
             } else {
-                o.setCount(randomStr(1, i/1000));
+                o.setCount(randomStr(1, i / 1000));
             }
             o.setLocation(provinces.get(random(0, provinces.size() - 1)));
             o.setCompany("hubu"+random(1,50));
@@ -121,6 +127,6 @@ public class OrderFormUtil {
         return i2s(random(a, b));
     }
     public static void main(String[] args) throws Exception {
-        createOrderForm(10);
+        createOrderForm(1000);
     }
 }

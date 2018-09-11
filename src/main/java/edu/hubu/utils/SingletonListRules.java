@@ -97,6 +97,7 @@ public class SingletonListRules {
         return instance;
     }
 
+    //解析excel
     private static List<ExpenseRule> getInstance(String fileName, String sheetName) {
 
         try {
@@ -117,11 +118,12 @@ public class SingletonListRules {
         }
     }
 
+    //处理并转换解析规则语句形成规则
     private static List<ExpenseRule> expenseRuleEntityList(String fileName, String sheetName) {
         try {
 
 
-            Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+//            Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
 
             List<ExpenseRule> entityList =SingletonListRules.getInstance(fileName, sheetName);
@@ -130,7 +132,7 @@ public class SingletonListRules {
                     .filter(t -> t.getCompanyName() != null && !t.getCompanyName().isEmpty())
                     .collect(Collectors.toList());
 
-            System.out.println(gson.toJson(entityList));
+         //   System.out.println(gson.toJson(entityList));
 
             Set<String> set = entityList.stream().map(ExpenseRule::getRuleId).collect(Collectors.toSet());
             if (set.size() != entityList.size()) {

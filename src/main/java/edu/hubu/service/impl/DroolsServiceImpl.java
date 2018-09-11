@@ -141,14 +141,21 @@ public class DroolsServiceImpl implements DroolsService {
 
         KieSession ksession = kieSessionUtil.build().newKieSession();
 
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuffer info = new StringBuffer();
+
+        info.append("\n\n\n\n***【Service--Begin】***\n\n");
 
         RuleGenerate generate = new RuleGenerate();
         generate.setRulePropertyNameAlias(SingletonListRules.getRulePropertyNameAlias());
 
+
+        o.getData().forEach((k, v) ->
+                info.append(k).append(":").append(v).append(" | "));
+        info.append(o.getRemarkMessage()).append("\n\n***【after】***\n\n");
+
         ksession.insert(o);
         ksession.fireAllRules();
-        stringBuilder.append(o.getRemarkMessage() + "|" + o.getData().get("score") + "|" + o.getData().get("fee") + "\n");
+
 
         // 处理计算后的值
         //{ER_SCORE}={ER_SCORE}+{ER_EXP_FEE}*1.1
@@ -157,12 +164,13 @@ public class DroolsServiceImpl implements DroolsService {
             generate.dealCaculate(o.getRemarkMessage(), o.getData());
         }
 
-        System.out.println(stringBuilder);
-        System.out.println("\n【after】\n");
-        StringBuilder sb = new StringBuilder();
 
-        sb.append(o.getRemarkMessage() + "|" + o.getData().get("score") + "|" + o.getData().get("fee") + "\n");
-        System.out.println(sb);
+        o.getData().forEach((k,v)->{
+            info.append(k).append(":").append(v).append(" | ");
+        });
+
+        info.append(o.getRemarkMessage()).append("\n\n***【Service--End】***\n\n\n\n");
+        log.info("Service通过规则引擎情况：{}",info);
         return o;
     }
 

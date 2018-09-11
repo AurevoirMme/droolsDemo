@@ -42,6 +42,9 @@ public class OrderInputController {
     public ResultVO<Map<String, String>> input(@Valid OrderForm orderForm,
                                                BindingResult bindingResult){
 
+        StringBuffer info = new StringBuffer();
+        info.append("\n\n\n\n***【Controller--Begin】***\n\n");
+
         if (bindingResult.hasErrors()) {
             log.error("【输入流水】参数不正确, orderForm={}", orderForm);
             throw new DroolsDemoException(ResultEnum.PARAM_ERROR.getCode(),
@@ -49,14 +52,29 @@ public class OrderInputController {
         }
         MatchInvoiceExpenselRuleRequestDto dto = OrderForm2MierrDTO.convert(orderForm);
         Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-        String before = gson.toJson(dto);
 
-        log.info("before:{}",before);
+        dto.getData().forEach((k, v) ->
+                info.append(k).append(":").append(v).append(" | "));
+        info.append(dto.getRemarkMessage()).append("\n\n***【after】***\n\n");
+//        log.info("before:{}",before);
+
+        int flag = Integer.valueOf(dto.getData().get("count"));
 
         droolsService.AddScore(dto);
 
+        //数量加1操作。
+        if (flag == Integer.valueOf(dto.getData().get("count"))) {
+            dto.getData().put("count", String.valueOf(flag + 1));
+        }
+
+        dto.getData().forEach((k,v)->{
+            info.append(k).append(":").append(v).append(" | ");
+        });
+
+        info.append(dto.getRemarkMessage()).append("\n\n***【Controller--End】***\n\n\n\n");
+        log.info("Controller通过规则引擎情况：{}",info);
         String after = gson.toJson(dto);
-        log.info("after:{}",after);
+//        log.info("after:{}",after);
 
         return ResultVOUtil.success();
     }

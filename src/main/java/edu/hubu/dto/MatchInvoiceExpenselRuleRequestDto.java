@@ -28,7 +28,9 @@ public class MatchInvoiceExpenselRuleRequestDto {
     //规则执行结果
     private RuleResult result = RuleResult.OK;
     
-    //备注-规则明细
+    //备注
     private String remarkMessage;
-    
+
+    //规则明细
+    private String ruleMessage;
 }
