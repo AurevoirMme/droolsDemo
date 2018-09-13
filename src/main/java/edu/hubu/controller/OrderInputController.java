@@ -10,6 +10,7 @@ import edu.hubu.form.OrderForm;
 import edu.hubu.service.DroolsService;
 import edu.hubu.utils.ResultVOUtil;
 import edu.hubu.vo.ResultVO;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,7 @@ import java.util.Map;
 @RequestMapping("/OrderFlow")
 @Slf4j
 @RestController
+@Api(tags = "OrderInputController", description = "处理订单的接口")
 public class OrderInputController {
     @Autowired
     DroolsService droolsService;
@@ -42,7 +44,8 @@ public class OrderInputController {
     public ResultVO<Map<String, String>> input(@Valid OrderForm orderForm,
                                                BindingResult bindingResult){
 
-        StringBuffer info = new StringBuffer();
+//        StringBuffer info = new StringBuffer();
+        StringBuilder info = new StringBuilder();
         info.append("\n\n\n\n***【Controller--Begin】***\n\n");
 
         if (bindingResult.hasErrors()) {

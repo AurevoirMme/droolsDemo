@@ -7,10 +7,7 @@ import edu.hubu.entity.User;
 import edu.hubu.enums.RuleResult;
 import edu.hubu.rule.FilloExcel;
 import edu.hubu.service.DroolsService;
-import edu.hubu.utils.KieSessionUtil;
-import edu.hubu.utils.RuleGenerate;
-import edu.hubu.utils.SingletonKieSession;
-import edu.hubu.utils.SingletonListRules;
+import edu.hubu.utils.*;
 import edu.hubu.vo.ExpenseRule;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -137,9 +134,10 @@ public class DroolsServiceImpl implements DroolsService {
 
     @Override
     public MatchInvoiceExpenselRuleRequestDto AddScore(MatchInvoiceExpenselRuleRequestDto o) {
-        KieSessionUtil kieSessionUtil = SingletonKieSession.getInstance();
+//        KieSessionUtil kieSessionUtil = SingletonKieSession.getInstance();
 
-        KieSession ksession = kieSessionUtil.build().newKieSession();
+//        KieSession ksession = kieSessionUtil.build().newKieSession();
+        KieSession ksession = SessionUtil.getInstance();
 
         StringBuffer info = new StringBuffer();
 

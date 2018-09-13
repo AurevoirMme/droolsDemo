@@ -4,6 +4,7 @@ import edu.hubu.enums.RuleResult;
 import lombok.Data;
 
 //import java.util.HashMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -23,8 +24,9 @@ public class MatchInvoiceExpenselRuleRequestDto {
     private String invoiceOID;
     
     //消费信息-会员级别、地点、费用等等
-    private Map<String, String> data = new ConcurrentHashMap<>();
-    
+//    private Map<String, String> data = new ConcurrentHashMap<>();
+    private Map<String, String> data = new HashMap<>();
+
     //规则执行结果
     private RuleResult result = RuleResult.OK;
     

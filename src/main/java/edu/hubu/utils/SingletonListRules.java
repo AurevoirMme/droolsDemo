@@ -143,6 +143,7 @@ public class SingletonListRules {
                     .map(SingletonListRules::ruleGenerate).collect(Collectors.toList());
 
         } catch (Exception e) {
+
             log.error("FilloExcel findSheet test err:[{},expenseRuleEntityList]", e.getMessage());
             return null;
 
